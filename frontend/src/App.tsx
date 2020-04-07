@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { Header } from './Header';
 import { HomePage } from './HomePage';
 import { fontFamily, fontSize, gray2 } from './Styles';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { SignInPage } from './SignInPage';
 import { NotFoundPage } from './NotFoundPage';
 import { QuestionPage } from './QuestionPage';
 import { lazy, Suspense } from 'react';
+import { HeaderWithRouter as Header } from './Header';
 
 const AskPage = lazy(() => import('./AskPage'));
 
