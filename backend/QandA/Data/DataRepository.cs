@@ -81,7 +81,7 @@ namespace QandA.Data
             }
         }
 
-        public QuestionGetSingleResponse PostQuestion(QuestionPostRequest question)
+        public QuestionGetSingleResponse PostQuestion(QuestionPostFullRequest question)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -130,7 +130,7 @@ namespace QandA.Data
             }
         }
 
-        public AnswerGetResponse PostAnswer(AnswerPostRequest answer)
+        public AnswerGetResponse PostAnswer(AnswerPostFullRequest answer)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -138,7 +138,7 @@ namespace QandA.Data
 
                 return connection.QueryFirst<AnswerGetResponse>(
                     @"EXEC dbo.Answer_Post
-                        @QuestionId = @QuestionId
+                        @QuestionId = @QuestionId,
                         @Content = @Content,
                         @UserId = @UserId,
                         @UserName = @UserName,
