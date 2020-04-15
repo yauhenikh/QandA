@@ -1,28 +1,35 @@
 ﻿using QandA.Data.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace QandA.Data
 {
     public interface IDataRepository
     {
-        IEnumerable<QuestionGetManyResponse> GetQuestions();
+        Task<IEnumerable<QuestionGetManyResponse>> GetQuestions();
 
-        IEnumerable<QuestionGetManyResponse> GetQuestionsBySearch(string search);
+        Task<IEnumerable<QuestionGetManyResponse>> GetQuestionsWithAnswers();
+
+        Task<IEnumerable<QuestionGetManyResponse>> GetQuestionsBySearch(string search);
+
+        Task<IEnumerable<QuestionGetManyResponse>> GetQuestionsBySearchWithPaging(string search, int pageNumber, int pageSize);
 
         IEnumerable<QuestionGetManyResponse> GetUnansweredQuestions();
 
-        QuestionGetSingleResponse GetQuestion(int questionId);
+        Task<IEnumerable<QuestionGetManyResponse>> GetUnansweredQuestionsAsync();
 
-        bool QuestionExists(int questionId);
+        Task<QuestionGetSingleResponse> GetQuestion(int questionId);
 
-        AnswerGetResponse GetAnswer(int answerId);
+        Task<bool> QuestionExists(int questionId);
 
-        QuestionGetSingleResponse PostQuestion(QuestionPostFullRequest question);
+        Task<AnswerGetResponse> GetAnswer(int answerId);
 
-        QuestionGetSingleResponse PutQuestion(int questionId, QuestionPutRequest question);
+        Task<QuestionGetSingleResponse> PostQuestion(QuestionPostFullRequest question);
 
-        void DeleteQuestion(int questionId);
+        Task<QuestionGetSingleResponse> PutQuestion(int questionId, QuestionPutRequest question);
 
-        AnswerGetResponse PostAnswer(AnswerPostFullRequest answer);
+        Task DeleteQuestion(int questionId);
+
+        Task<AnswerGetResponse> PostAnswer(AnswerPostFullRequest answer);
     }
 }
