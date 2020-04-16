@@ -28,3 +28,13 @@ C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\M
 C:\Users\Professional\source\repos\QandA\backend\QandA\obj\Debug\netcoreapp3.1\QandA.dll
 C:\Users\Professional\source\repos\QandA\backend\QandA\obj\Debug\netcoreapp3.1\QandA.pdb
 C:\Users\Professional\source\repos\QandA\backend\QandA\obj\Debug\netcoreapp3.1\QandA.genruntimeconfig.cache
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Professional\source\repos\QandA\backend\QandA\obj\Debug\netcoreapp3.1\QandA.csproj.CoreCompileInputs.cache
+C:\Users\Professional\source\repos\QandA\backend\QandA\obj\Debug\netcoreapp3.1\QandA.MvcApplicationPartsAssemblyInfo.cache
