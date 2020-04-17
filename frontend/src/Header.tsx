@@ -1,9 +1,27 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
+import { ChangeEvent, FC, useState, FormEvent } from 'react';
 import { UserIcon } from './Icons';
 import { fontFamily, fontSize, gray1, gray2, gray5 } from './Styles';
-import { ChangeEvent, FC, useState, FormEvent } from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { useAuth } from './Auth';
+
+const buttonStyle = css`
+  border: none;
+  font-family: ${fontFamily};
+  font-size: ${fontSize};
+  padding: 5px 10px;
+  background-color: transparent;
+  color: ${gray2};
+  text-decoration: none;
+  cursor: pointer;
+  span {
+    margin-left: 10px;
+  }
+  :focus {
+    outline-color: ${gray5};
+  }
+`;
 
 export const Header: FC<RouteComponentProps> = ({ history, location }) => {
   const searchParams = new URLSearchParams(location.search);
@@ -19,6 +37,8 @@ export const Header: FC<RouteComponentProps> = ({ history, location }) => {
     e.preventDefault();
     history.push(`/search?criteria=${search}`);
   };
+
+  const { isAuthenticated, user, loading } = useAuth();
 
   return (
     <div
@@ -51,8 +71,8 @@ export const Header: FC<RouteComponentProps> = ({ history, location }) => {
         <input
           type="text"
           placeholder="Search..."
-          value={search}
           onChange={handleSearchInputChange}
+          value={search}
           css={css`
             box-sizing: border-box;
             font-family: ${fontFamily};
@@ -70,27 +90,24 @@ export const Header: FC<RouteComponentProps> = ({ history, location }) => {
           `}
         />
       </form>
-      <Link
-        to="/signin"
-        css={css`
-          font-family: ${fontFamily};
-          font-size: ${fontSize};
-          padding: 5px 10px;
-          background-color: transparent;
-          color: ${gray2};
-          text-decoration: none;
-          cursor: pointer;
-          span {
-            margin-left: 10px;
-          }
-          :focus {
-            outline-color: ${gray5};
-          }
-        `}
-      >
-        <UserIcon />
-        <span>Sign In</span>
-      </Link>
+      {!loading &&
+        (isAuthenticated ? (
+          <div>
+            <span>{user!.name}</span>
+            <Link
+              to={{ pathname: '/signout', state: { local: true } }}
+              css={buttonStyle}
+            >
+              <UserIcon />
+              <span>Sign Out</span>
+            </Link>
+          </div>
+        ) : (
+          <Link to="/signin" css={buttonStyle}>
+            <UserIcon />
+            <span>Sign In</span>
+          </Link>
+        ))}
     </div>
   );
 };

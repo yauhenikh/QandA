@@ -1,24 +1,23 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import HomePage from './HomePage';
+import React, { lazy, Suspense } from 'react';
+import { HeaderWithRouter as Header } from './Header';
+import { HomePage } from './HomePage';
 import { fontFamily, fontSize, gray2 } from './Styles';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { SearchPage } from './SearchPage';
 import { SignInPage } from './SignInPage';
+import { SignOutPage } from './SignOutPage';
 import { NotFoundPage } from './NotFoundPage';
 import { QuestionPage } from './QuestionPage';
-import { lazy, Suspense } from 'react';
-import { Provider } from 'react-redux';
-import { configureStore } from './Store';
-import { HeaderWithRouter as Header } from './Header';
+import { AuthProvider } from './Auth';
+import { AuthorizedPage } from './AuthorizedPage';
 
 const AskPage = lazy(() => import('./AskPage'));
 
-const store = configureStore();
-
-function App() {
+const App: React.FC = () => {
   return (
-    <Provider store={store}>
+    <AuthProvider>
       <BrowserRouter>
         <div
           css={css`
@@ -45,17 +44,34 @@ function App() {
                   </div>
                 }
               >
-                <AskPage />
+                <AuthorizedPage>
+                  <AskPage />
+                </AuthorizedPage>
               </Suspense>
             </Route>
-            <Route path="/signin" component={SignInPage} />
+            <Route
+              path="/signin"
+              render={() => <SignInPage action="signin" />}
+            />
+            <Route
+              path="/signin-callback"
+              render={() => <SignInPage action="signin-callback" />}
+            />
+            <Route
+              path="/signout"
+              render={() => <SignOutPage action="signout" />}
+            />
+            <Route
+              path="/signout-callback"
+              render={() => <SignOutPage action="signout-callback" />}
+            />
             <Route path="/questions/:questionId" component={QuestionPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
       </BrowserRouter>
-    </Provider>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
