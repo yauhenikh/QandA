@@ -60,8 +60,8 @@ namespace QandA
                 options.AddPolicy("CorsPolicy", builder =>
                     builder.AllowAnyMethod()
                         .AllowAnyHeader()
-                        .WithOrigins("http://localhost:3000")
-                        .AllowCredentials()));
+                        .AllowCredentials()
+                        .WithOrigins(Configuration["Frontend"])));
 
             services.AddSignalR();
 
